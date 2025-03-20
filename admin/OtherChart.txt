@@ -1,0 +1,112 @@
+
+                                <div class="col-sm-8">
+                                    <!-- Chart by Month start -->
+                                    <figure class="highcharts-figure">
+                                        <div id="container2"></div>
+                                        <p class="highcharts-description">.</p>
+                                    </figure>
+                                    <script>
+                                        Highcharts.chart('container2', {
+                                            chart: {
+                                                type: 'pie'
+                                            },
+                                            title: {
+                                                text: 'จำนวนการใช้บริการแยกตามเดือน'
+                                            },
+                                            subtitle: {
+                                                text: 'รวมทั้งสิ้น <?= $rowOrderCount['totalOrders']; ?> ครั้ง '
+                                            },
+                                            accessibility: {
+                                                announceNewData: {
+                                                    enabled: true
+                                                }
+                                            },
+                                            xAxis: {
+                                                type: 'category'
+                                            },
+                                            yAxis: {
+                                                title: {
+                                                    text: 'จำนวนการใช้บริการ'
+                                                }
+                                            },
+                                            legend: {
+                                                enabled: false
+                                            },
+                                            plotOptions: {
+                                                series: {
+                                                    borderWidth: 0,
+                                                    dataLabels: {
+                                                        enabled: true,
+                                                        format: '{point.y:.0f} ครั้ง'
+                                                    }
+                                                }
+                                            },
+                                            tooltip: {
+                                                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f} ครั้ง</b> of total<br/>'
+                                            },
+                                            series: [{
+                                                name: "จำนวนการใช้บริการ",
+                                                colorByPoint: true,
+                                                //เอาข้อมูลมา echo ตรงนี้
+                                                data: [<?= $report_data_month; ?>]
+                                            }]
+                                        });
+                                    </script> <!-- Chart by Month End -->
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <!-- Chart by Year start -->
+                                    <figure class="highcharts-figure">
+                                        <div id="container-"></div>
+                                        <p class="highcharts-description">.</p>
+                                    </figure>
+                                    <script>
+                                        Highcharts.chart('container-', {
+                                            chart: {
+                                                type: 'column'
+                                            },
+                                            title: {
+                                                text: 'จำนวนการใช้บริการแยกตามปี'
+                                            },
+                                            subtitle: {
+                                                text: 'รวมทั้งสิ้น <?= $rowOrderCount['totalOrders']; ?> ครั้ง '
+                                            },
+                                            accessibility: {
+                                                announceNewData: {
+                                                    enabled: true
+                                                }
+                                            },
+                                            xAxis: {
+                                                type: 'category'
+                                            },
+                                            yAxis: {
+                                                title: {
+                                                    text: 'จำนวนการใช้บริการ'
+                                                }
+                                            },
+                                            legend: {
+                                                enabled: false
+                                            },
+                                            plotOptions: {
+                                                series: {
+                                                    borderWidth: 0,
+                                                    dataLabels: {
+                                                        enabled: true,
+                                                        format: '{point.y:.0f} ครั้ง'
+                                                    }
+                                                }
+                                            },
+                                            tooltip: {
+                                                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f} ครั้ง</b> of total<br/>'
+                                            },
+                                            series: [{
+                                                name: "จำนวนการใช้บริการ",
+                                                colorByPoint: true,
+                                                //เอาข้อมูลมา echo ตรงนี้
+                                                data: [<?= $report_data_year; ?>]
+                                            }]
+                                        });
+                                    </script> <!-- Chart by Year End -->
+                                </div>
