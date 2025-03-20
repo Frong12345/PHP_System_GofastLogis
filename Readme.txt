@@ -13,7 +13,7 @@
 ✅ รายงานและสถิติการจัดส่ง  
 
 ## 🛠️ เทคโนโลยีที่ใช้
-- **Frontend**: HTML, CSS, Bootstrap 5, JavaScript  
+- **Frontend**: HTML, CSS, Bootstrap 5, JavaScript, AdminLTE 3 
 - **Backend**: PHP  
 - **Database**: MySQL  
 
