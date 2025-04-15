@@ -28,10 +28,10 @@ $rowCenterCount = $stmtCenterCount->fetch(PDO::FETCH_ASSOC);
 // https://devbanban.com/?p=5094 : 5.หน้าแสดงรายงาน (Report) แสดงกราฟแท่งแสดงการประเมินแยกตามวัน และการแปลผลคะแนนประเมินโดยการใช้ค่าเฉลี่ย
 // Query Visitor by Date
 $queryViewByDay = $condb->prepare(
-    "SELECT DATE_FORMAT(created_at,'%d/%m/%Y') as datesave, count(*)/7 as total 
+    "SELECT DATE_FORMAT(created_at,'%d/%m/%Y') as datesave, count(*) as total 
             FROM orders
             GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d') 
-            ORDER BY DATE_FORMAT(created_at,'%Y-%m-%d') DESC"
+            ORDER BY DATE_FORMAT(created_at,'%Y-%m-%d')"
 );
 $queryViewByDay->execute();
 $rwViewByDay = $queryViewByDay->fetchAll();
@@ -127,7 +127,7 @@ $report_data_year = implode(",", $report_data_year);
                                             <p>Orders</p>
                                         </div>
                                         <div class="icon">
-                                            <i class="ion ion-connection-bars"></i>
+                                            <i style="font-size: 65px; margin-top: 10px;" class="fa-solid fa-box"></i>
                                         </div>
                                         <a href="orders.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                     </div>
@@ -143,7 +143,7 @@ $report_data_year = implode(",", $report_data_year);
                                         <div class="icon">
                                             <i class="ion ion-person-stalker"></i>
                                         </div>
-                                        <a href="admin.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                        <a href="customers.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
 
@@ -169,7 +169,7 @@ $report_data_year = implode(",", $report_data_year);
                                             <p>Distribute Centers</p>
                                         </div>
                                         <div class="icon">
-                                            <i class="ion ion-bag"></i>
+                                            <i class="nav-icon fas fa-map-marked-alt"></i>
                                         </div>
                                         <a href="distribution_centers.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                     </div>

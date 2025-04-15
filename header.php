@@ -55,6 +55,7 @@ if (isset($_POST['admin_email']) && isset($_POST['admin_password']) && isset($_P
                 </script>';
   } else { //true
     // echo 'ถูกต้อง';
+
     $row = $stmtLogin->fetch(PDO::FETCH_ASSOC);
     //ประกาศตัวแปร session
     $_SESSION['admin_id'] = $row['admin_id'];
@@ -69,11 +70,24 @@ if (isset($_POST['admin_email']) && isset($_POST['admin_password']) && isset($_P
               title: "ล็อกอินสำเร็จ",
               type: "success"
           }, function() {
-              window.location = "admin/"; //หน้าที่ต้องการให้กระโดดไป
+              window.location = ' . header('Location: admin/') . '; //หน้าที่ต้องการให้กระโดดไป
           });
           }, 1000);
       </script>';
-    } 
+    } else {
+      echo '<script>
+              setTimeout(function() {
+              swal({
+                  title: "คุณไม่มีสิทธิ์เข้าใช้งานหน้านี้",
+                  type: "warning"
+              }, function() {
+                  window.location = "../logout.php"; //หน้าที่ต้องการให้กระโดดไป
+              });
+              }, 1000);
+            </script>';
+      // header('Location: ../logout.php');
+      exit;
+    }
     //else if ($_SESSION['admin_level'] == 'staff') { //staff
     //   header('Location: staff/'); //login ถูกต้องและกระโดดไปหน้าตามที่ต้องการ
     // } else if ($_SESSION['admin_level'] == ' ') { //member
@@ -82,8 +96,29 @@ if (isset($_POST['admin_email']) && isset($_POST['admin_password']) && isset($_P
   }
 } //isset
 
+require_once 'config/condb.php';
+
+// echo '<pre>';
+// print_r($_GET);
+// exit;
+
+//query product for index || query for loop
+$queryproduct = $condb->prepare("SELECT service_id, service_names, service_img, service_caption, service_details
+ FROM tbl_service
+ ORDER BY service_id DESC
+ LIMIT 8");
+$queryproduct->execute();
+$rsproduct = $queryproduct->fetchAll();
 
 
+
+
+
+
+
+
+
+// Windows
 $current_page = 'หน้าหลัก';
 
 if (isset($_GET['act'])) {

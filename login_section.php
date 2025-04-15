@@ -34,10 +34,10 @@
                             </div>
 
 
-                            <div class="d-flex justify-content-between mt-2">
+                            <!-- <div class="d-flex justify-content-between mt-2">
                                 <div></div>
                                 <a href="login.php?act=ลงทะเบียน" style="text-decoration: none;">ลงทะเบียน</a>
-                            </div>
+                            </div> -->
 
                         </div>
 

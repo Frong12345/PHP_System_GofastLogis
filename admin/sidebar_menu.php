@@ -41,13 +41,6 @@ $adminData = $adminDetail->fetch(PDO::FETCH_ASSOC);
           </a>
         </li>
 
-        <li class="nav-item">
-          <a href="dashboard.php" class="nav-link">
-            <i class="nav-icon fas fa-chart-bar"></i>
-            <p>Dashboard</p>
-          </a>
-        </li>
-
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-truck-loading"></i>
@@ -89,7 +82,14 @@ $adminData = $adminDetail->fetch(PDO::FETCH_ASSOC);
         <li class="nav-item">
           <a href="distribution_centers.php" class="nav-link">
             <i class="nav-icon fas fa-map-marked-alt"></i>
-            <p>จัดการศูนย์กระจายสินค้า</p>
+            <p>จัดการข้อมูลศูนย์</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="product.php" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>จัดการข้อมูลผลิตภัณฑ์</p>
           </a>
         </li>
 

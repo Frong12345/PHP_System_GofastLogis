@@ -3,15 +3,43 @@ session_start();
 // session_destroy();
 // print_r($_SESSION);
 
-//สร้างเงื่อนไขตรวจสอบว่ามีการ login มาแล้วหรือยัง และเป็นสิทธ์ admin หรือไม่
+echo '<!-- sweet alert -->
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">';
 
-//ถ้าไม่มีการ login 
-if (empty($_SESSION['id']) && empty($_SESSION['admin_level'])) {
-    header('Location: ../logout.php'); //ดีดออกไป
+
+//สร้างเงื่อนไขตรวจสอบสิทธ์ user role, authentication = admin
+//check ว่ามี session ที่จะใช้หรือไม่ admin_id, admin_name, admin_level
+if (empty($_SESSION['admin_id']) && empty($_SESSION['admin_name']) && empty($_SESSION['admin_level'])) {
+    echo '<script>
+              setTimeout(function() {
+              swal({
+                  title: "คุณไม่มีสิทธิ์เข้าใช้งานหน้านี้",
+                  type: "warning"
+              }, function() {
+                  window.location = "../logout.php"; //หน้าที่ต้องการให้กระโดดไป
+              });
+              }, 1000);
+            </script>';
+    // header('Location: ../logout.php');
+    exit;
 }
+
 // Check เป็น admin หรือไม่
-if (isset($_SESSION['id']) && isset($_SESSION['admin_level']) && $_SESSION['admin_level'] != 'admin') {
-    header('Location: ../logout.php'); //ดีดออกไป
+if (isset($_SESSION['admin_level']) && $_SESSION['admin_level'] != 'admin') {
+    echo '<script>
+              setTimeout(function() {
+              swal({
+                  title: "คุณไม่มีสิทธิ์เข้าใช้งานหน้านี้",
+                  type: "warning"
+              }, function() {
+                  window.location = "../logout.php"; //หน้าที่ต้องการให้กระโดดไป
+              });
+              }, 1000);
+            </script>';
+    // header('Location: ../logout.php');
+    exit;
 }
 
 //ไฟล์เชื่อมต่อฐานข้อมูล
@@ -35,6 +63,13 @@ require_once '../config/condb.php';
     <link rel="stylesheet" href="../assetsBackend/dist/css/adminlte.min.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../assetsBackend/plugins/summernote/summernote-bs4.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- Favicons -->
+    <link href="assetsFront/img/favicon.png" rel="icon">
+    <link href="assetsFront/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- DataTables -->
     <link rel="stylesheet" href="../assetsBackend/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -66,9 +101,11 @@ require_once '../config/condb.php';
         #container {
             height: 380px;
         }
+
         #container2 {
             height: 380px;
         }
+
         #container3 {
             height: 380px;
         }

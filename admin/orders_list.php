@@ -56,7 +56,7 @@ $rsOrders = $stmtOrderDetail->fetchAll();
                                     <?php
                                     foreach ($rsOrders as $row) { ?>
                                         <tr>
-                                            <td align="center"> <?= date('d/m/y H:m:s', strtotime($row['created_at'])); ?> </td>
+                                            <td align="center"> <?= date('d/m/y H:i:s', strtotime($row['created_at'])); ?> </td>
                                             <td align="center"> <?= $row['tracking_number']; ?> </td>
                                             <td><?= $row['shipping_type']; ?></td>
                                             <td><?= $row['name']; ?></td>
